@@ -48,4 +48,35 @@ public class EstudianteDAO {
             return 0;
         }
     }
+
+    // Método para actualizar un estudiante existente
+    public int actualizar(Estudiante est) {
+        String sql = "UPDATE estudiantes SET cedula=?, nombre=?, apellido=?, email=? WHERE id=?";
+        try {
+            con = Conexion.obtenerConexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, est.obtenerCedula());
+            ps.setString(2, est.obtenerNombre());
+            ps.setString(3, est.obtenerApellido());
+            ps.setString(4, est.obtenerCorreo());
+            ps.setInt(5, est.obtenerId());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    // Método para eliminar un estudiante
+    public int eliminar(int id) {
+        String sql = "DELETE FROM estudiantes WHERE id=" + id;
+        try {
+            con = Conexion.obtenerConexion();
+            ps = con.prepareStatement(sql);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar: " + e.getMessage());
+            return 0;
+        }
+    }
 }
