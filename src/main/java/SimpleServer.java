@@ -19,10 +19,13 @@ import modelo.Matricula;
 
 public class SimpleServer {
     public static void main(String[] args) throws IOException {
-        System.out.println("🚀 Iniciando servidor HTTP simple...");
-        
-        // Crear servidor en puerto 8080
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+         // Obtener el puerto dinámico de Render, o usar 8080 para local
+        String portEnv = System.getenv("PORT");
+        int port = (portEnv != null) ? Integer.parseInt(portEnv) : 8080;
+
+        System.out.println("🚀 Iniciando servidor HTTP en puerto " + port + "...");
+
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         
         // Configurar endpoints
         server.createContext("/backend-api/api/login", new LoginHandler());
