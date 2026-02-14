@@ -13,14 +13,13 @@ import java.util.List;
 
 @WebServlet("/api/materias")
 public class MateriaControlador extends HttpServlet {
-
     private MateriaDAO materiaDAO = new MateriaDAO();
     private Gson gson = new Gson();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        configurarHeaders(response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        
         List<Materia> lista = materiaDAO.listar();
         response.getWriter().print(gson.toJson(lista));
     }

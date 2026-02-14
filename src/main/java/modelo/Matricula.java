@@ -12,6 +12,8 @@ public class Matricula {
     public Matricula() {}
 
     // Getters y Setters...
+    public int obtenerId() { return id; }
+    public void asignarId(int id) { this.id = id; }
     public int obtenerIdEstudiante() { return idEstudiante; }
     public void asignarIdEstudiante(int id) { this.idEstudiante = id; }
     public int obtenerIdMateria() { return idMateria; }

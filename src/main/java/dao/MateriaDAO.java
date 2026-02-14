@@ -41,5 +41,15 @@ public class MateriaDAO {
             return ps.executeUpdate();
         } catch (SQLException e) { return 0; }
     }
+
+    public int eliminar(int id) {
+        String sql = "DELETE FROM materias WHERE id=?";
+        try {
+            con = Conexion.obtenerConexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            return ps.executeUpdate();
+        } catch (SQLException e) { System.out.println(e.getMessage()); return 0; }
+    }
     // (Luego podemos añadir editar y eliminar de la misma forma que estudiantes)
 }

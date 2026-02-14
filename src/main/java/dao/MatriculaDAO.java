@@ -23,6 +23,8 @@ public class MatriculaDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Matricula m = new Matricula();
+                
+                m.asignarId(rs.getInt("id"));
                 m.asignarNombreEstudiante(rs.getString("estudiante"));
                 m.asignarNombreMateria(rs.getString("materia"));
                 lista.add(m);
@@ -40,5 +42,28 @@ public class MatriculaDAO {
             ps.setInt(2, idMat);
             return ps.executeUpdate();
         } catch (SQLException e) { return 0; }
+    }
+
+    public int eliminar(int id) {
+        String sql = "DELETE FROM matriculas WHERE id=?";
+        try {
+            con = Conexion.obtenerConexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            return ps.executeUpdate();
+        } catch (SQLException e) { System.out.println(e.getMessage()); return 0; }
+    }
+
+    // Método para actualizar una matrícula existente
+    public int actualizar(int id, int idEst, int idMat) {
+        String sql = "UPDATE matriculas SET id_estudiante=?, id_materia=? WHERE id=?";
+        try {
+            con = Conexion.obtenerConexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idEst);
+            ps.setInt(2, idMat);
+            ps.setInt(3, id);
+            return ps.executeUpdate();
+        } catch (SQLException e) { System.out.println("Error al actualizar matrícula: " + e.getMessage()); return 0; }
     }
 }

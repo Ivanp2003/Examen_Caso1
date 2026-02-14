@@ -1,0 +1,10 @@
+{
+    "java.jdt.ls.java.home": "${env:JAVA_HOME}",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.debug.settings.onBuildFailureProceed": true,
+    "files.associations": {
+        "*.java": "java"
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell"
+}

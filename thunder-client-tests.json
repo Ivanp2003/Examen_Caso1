@@ -1,0 +1,76 @@
+{
+  "thunder-client_tests": [
+    {
+      "name": "Login - Credenciales Válidas",
+      "method": "POST",
+      "url": "http://localhost:8080/backend-api/api/login",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "body": {
+        "mode": "formdata",
+        "formdata": [
+          {
+            "key": "correo",
+            "value": "admin@test.com",
+            "type": "text"
+          },
+          {
+            "key": "clave",
+            "value": "1234",
+            "type": "text"
+          }
+        ]
+      },
+      "tests": [
+        "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+        "pm.test('Response has success state', function () { pm.expect(pm.response.json().estado).to.eql('exito'); });",
+        "pm.test('Response contains user data', function () { pm.expect(pm.response.json().usuario).to.exist; });"
+      ]
+    },
+    {
+      "name": "Login - Credenciales Inválidas",
+      "method": "POST",
+      "url": "http://localhost:8080/backend-api/api/login",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "body": {
+        "mode": "formdata",
+        "formdata": [
+          {
+            "key": "correo",
+            "value": "invalid@test.com",
+            "type": "text"
+          },
+          {
+            "key": "clave",
+            "value": "wrongpassword",
+            "type": "text"
+          }
+        ]
+      },
+      "tests": [
+        "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+        "pm.test('Response has error state', function () { pm.expect(pm.response.json().estado).to.eql('error'); });",
+        "pm.test('Response contains error message', function () { pm.expect(pm.response.json().mensaje).to.include('incorrectos'); });"
+      ]
+    },
+    {
+      "name": "Login - Sin Parámetros",
+      "method": "POST",
+      "url": "http://localhost:8080/backend-api/api/login",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "body": {
+        "mode": "formdata",
+        "formdata": []
+      },
+      "tests": [
+        "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+        "pm.test('Response has error state', function () { pm.expect(pm.response.json().estado).to.eql('error'); });"
+      ]
+    }
+  ]
+}
