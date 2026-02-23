@@ -1,0 +1,44 @@
+services:
+  # Servicio de Base de Datos PostgreSQL
+  - type: pserv
+    name: backend-db
+    env: postgres
+    plan: free
+    postgresMajorVersion: 15
+    ipAllowList: []
+    
+  # Servicio de Backend API
+  - type: web
+    name: backend-api
+    env: java
+    plan: free
+    buildCommand: "mvn clean package -DskipTests"
+    startCommand: "java -jar target/backend-api.war"
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: backend-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: backend-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: backend-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: backend-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: backend-db
+          property: password
+      - key: APP_ENVIRONMENT
+        value: production
+      - key: SERVER_PORT
+        value: 8080
+      - key: CORS_ALLOWED_ORIGINS
+        value: "*"
+    healthCheckPath: /backend-api/api/login
