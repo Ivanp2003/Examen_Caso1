@@ -7,9 +7,9 @@ services:
     postgresMajorVersion: 15
     ipAllowList: []
     
-  # Servicio de Backend API
+  # Servicio de Backend API - FORZAR ACTUALIZACIÓN
   - type: web
-    name: backend-api
+    name: backend-api-v2
     env: docker
     plan: free
     dockerContext: .
@@ -41,4 +41,6 @@ services:
         value: 8080
       - key: CORS_ALLOWED_ORIGINS
         value: "*"
+      - key: DB_TYPE
+        value: postgresql
     healthCheckPath: /backend-api/api/login
