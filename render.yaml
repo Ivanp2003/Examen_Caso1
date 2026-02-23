@@ -10,10 +10,10 @@ services:
   # Servicio de Backend API
   - type: web
     name: backend-api
-    env: java
+    env: docker
     plan: free
-    buildCommand: "mvn clean package -DskipTests"
-    startCommand: "java -jar target/backend-api.war"
+    dockerContext: .
+    dockerfilePath: ./Dockerfile.render
     envVars:
       - key: DB_HOST
         fromDatabase:
