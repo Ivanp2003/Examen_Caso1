@@ -1,6 +1,89 @@
+# Compiled classes and build outputs
 /target/
 .settings/
 .classpath
 .project
-.DS_Store
 *.class
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# VS Code files (opcional - descomentar si no quieres subirlo)
+# .vscode/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+
+# War files (for production deployment)
+*.war
+!backend-api.war
+
+# Maven wrapper
+!mvnw
+!mvnw.cmd
+.mvn/
+mvnw
+mvnw.cmd
+
+# Application specific
+application.properties
+application-*.properties
